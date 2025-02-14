@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录界面 💕</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background-color: #ffdde1; padding: 20px; }
+        h1 { color: red; }
+        .login-box { background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); }
+        input { font-size: 18px; padding: 8px; margin: 10px; width: 80%; text-align: center; }
+        button { font-size: 18px; padding: 10px 20px; background-color: #ff4d4d; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #ff1a1a; }
+        .toggle-password { cursor: pointer; font-size: 16px; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>💖 亲爱的，先登录才能继续 💖</h1>
+
+    <div class="login-box">
+        <p>用户名：</p>
+        <input type="text" id="username" placeholder="请输入用户名">
+
+        <p>密码：</p>
+        <input type="password" id="password" placeholder="请输入密码">
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+
+        <br>
+        <button onclick="checkLogin()">登录</button>
+
+        <p id="error-message" style="color: red;"></p>
+        <p id="hint-message" style="color: gray;">提示：用户名是“你英文名，首字母大写”，密码是你的生日, 格式: YYYYMMDD</p>
+    </div>
+
+    <script>
+        function checkLogin() {
+            let user = document.getElementById("username").value.trim();
+            let pass = document.getElementById("password").value.trim();
+
+            // 这里是你自己设置的用户名和密码
+            const correctUser = "Allison";
+            const correctPass = "19960202";
+
+            if (user === "" || pass === "") {
+                document.getElementById("error-message").innerText = "⚠️ 请输入用户名和密码！";
+                return;
+            }
+
+            if (user !== correctUser) {
+                document.getElementById("error-message").innerText = "❌ 用户名错误！再想想吧～";
+                return;
+            }
+
+            if (pass !== correctPass) {
+                document.getElementById("error-message").innerText = "❌ 密码错误！";
+                return;
+            }
+
+            document.get
