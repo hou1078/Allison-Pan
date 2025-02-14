@@ -57,6 +57,25 @@
             text-align: right;
         }
 
+        /* 🎶 音乐按钮 */
+        #music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #E8B4A5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #music-btn:hover {
+            background: #D98880;
+        }
+
         /* 📱 iPhone 适配 */
         @media screen and (max-width: 480px) {
             .love-letter {
@@ -67,6 +86,11 @@
 
             h1 {
                 font-size: 20px;
+            }
+
+            #music-btn {
+                font-size: 14px;
+                padding: 8px 12px;
             }
         }
     </style>
@@ -136,5 +160,36 @@
 
         <p class="signature">🐻 潘老师，你愿意做我女朋友吗？ 💕</p>
     </div>
+
+    <!-- 🎵 背景音乐 -->
+    <audio id="bg-music" loop>
+        <source src="love.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <!-- 🎵 音乐控制按钮 -->
+    <button id="music-btn" onclick="toggleMusic()">🎵 播放音乐</button>
+
+    <script>
+        let music = document.getElementById("bg-music");
+        let musicBtn = document.getElementById("music-btn");
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicBtn.innerText = "⏸️ 暂停音乐";
+            } else {
+                music.pause();
+                musicBtn.innerText = "🎵 播放音乐";
+            }
+        }
+
+        // 兼容 iPhone / iOS，用户交互后才能播放音乐
+        document.addEventListener('click', function() {
+            if (music.paused) {
+                music.play().catch(error => console.log("自动播放被阻止"));
+            }
+        }, { once: true }); // 只监听一次点击
+    </script>
 </body>
 </html>
