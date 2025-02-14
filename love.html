@@ -2,27 +2,27 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>致我的小宝 💖</title>
     <style>
         /* 🌈 背景渐变，保持与之前风格一致 */
         body {
             text-align: center;
-            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            font-family: 'Bradley Hand', cursive;
             background: linear-gradient(to bottom, #FEECE2, #FAD4C0);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
         }
 
         /* 🧸 标题 */
         h1 {
             color: #7D5A50;
-            font-size: 30px;
+            font-size: 24px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
             font-family: 'Bradley Hand', cursive;
             margin-bottom: 15px;
@@ -36,7 +36,7 @@
             width: 90%;
             max-width: 600px;
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-            font-size: 14px;
+            font-size: 16px;
             text-align: left;
             line-height: 1.8;
             color: #333;
@@ -50,10 +50,23 @@
 
         /* 📝 署名 */
         .signature {
-            font-size: 20px;
+            font-size: 18px;
             font-style: italic;
             margin-top: 20px;
             text-align: right;
+        }
+
+        /* 📱 iPhone 适配 */
+        @media screen and (max-width: 480px) {
+            .love-letter {
+                font-size: 14px;
+                padding: 15px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
