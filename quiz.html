@@ -12,9 +12,8 @@
             background: linear-gradient(to bottom, #FEECE2, #FAD4C0);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
+            align-items: center;
             margin: 0;
             padding: 10px;
         }
@@ -22,10 +21,9 @@
         /* 🧸 标题 */
         h1 {
             color: #7D5A50;
-            font-size: 24px;
+            font-size: 28px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            font-family: 'Bradley Hand', cursive;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         /* 📖 规则手册 */
@@ -38,14 +36,14 @@
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
             font-size: 14px;
             text-align: left;
+            margin-bottom: 20px;
         }
 
-        /* 💡 横向问题容器 */
+        /* 💡 **改成竖向排列** */
         .question-container {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
         }
 
@@ -54,24 +52,25 @@
             background: #FFF8E3;
             padding: 12px;
             border-radius: 12px;
-            width: 47%;
-            max-width: 180px;
+            width: 90%;
+            max-width: 350px;
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-            font-size: 14px;
+            font-size: 16px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 10px;
         }
 
         /* 🎁 提示按钮 */
         .hint-btn {
-            font-size: 12px;
-            padding: 5px;
+            font-size: 14px;
+            padding: 6px;
             background: #F4A896;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
             margin-top: 5px;
@@ -83,9 +82,9 @@
 
         /* 📝 输入框 */
         input {
-            font-size: 14px;
-            padding: 8px;
-            width: 85%;
+            font-size: 16px;
+            padding: 10px;
+            width: 90%;
             border: 2px solid #E8B4A5;
             border-radius: 8px;
             text-align: center;
@@ -96,9 +95,9 @@
 
         /* 🧁 交互按钮 */
         button {
-            font-size: 16px;
-            padding: 12px;
-            width: 60%;
+            font-size: 18px;
+            padding: 14px;
+            width: 80%;
             background: #E8B4A5;
             color: white;
             border: none;
@@ -135,7 +134,7 @@
         /* 📱 iPhone 适配 */
         @media screen and (max-width: 480px) {
             .question {
-                width: 90%;
+                width: 100%;
             }
 
             input {
@@ -201,12 +200,27 @@
     <p id="result"></p>
 
     <script>
+        let angerPoints = 0; // 生气积分从 0 开始
+
         function useHint(questionNum) {
             document.getElementById(`hint${questionNum}`).style.display = "block";
+            angerPoints++;
         }
 
         function checkAnswers() {
-            alert("提交成功！");
+            let answer1 = document.getElementById("q1").value.trim();
+            let answer2 = document.getElementById("q2").value.trim().toLowerCase();
+            let answer3 = document.getElementById("q3").value.trim().toLowerCase();
+            let answer4 = document.getElementById("q4").value.trim().toLowerCase();
+            let answer5 = document.getElementById("q5").value.trim().toLowerCase();
+
+            if (answer1 === "20241223" && answer2 === "豆捞坊" && answer3 === "骗骗喜欢你" && answer4 === "夫妻" && answer5 === "") {
+                document.getElementById("result").innerHTML = "🎉 答对啦！即将跳转到最终表白 💖";
+                setTimeout(() => { window.location.href = "love.html"; }, 2000);
+            } else {
+                document.getElementById("result").innerHTML = "❌ 不对哦小宝！😡 重新开始！";
+                setTimeout(() => { location.reload(); }, 2000);
+            }
         }
     </script>
 </body>
