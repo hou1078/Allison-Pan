@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱的问答 💖</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background-color: #ffdde1; padding: 20px; }
+        h1 { color: red; }
+        .question { font-size: 20px; margin: 20px; }
+        button { font-size: 18px; padding: 10px 20px; background-color: #ff4d4d; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #ff1a1a; }
+    </style>
+</head>
+<body>
+    <h1>💕 亲爱的，答对这些题，才能继续哦 💕</h1>
+
+    <div class="question">
+        <p>1️⃣ 我们第一次见面的日期是？（格式：YYYY-MM-DD）</p>
+        <input type="text" id="q1">
+    </div>
+
+    <div class="question">
+        <p>2️⃣ 我送你的第一个礼物是什么？</p>
+        <input type="text" id="q2">
+    </div>
+
+    <div class="question">
+        <p>3️⃣ 我最喜欢你做的一件事是什么？</p>
+        <input type="text" id="q3">
+    </div>
+
+    <button onclick="checkAnswers()">提交答案</button>
+
+    <p id="result" style="font-size: 18px; color: green;"></p>
+
+    <script>
+        function checkAnswers() {
+            let answer1 = document.getElementById("q1").value.trim();
+            let answer2 = document.getElementById("q2").value.trim().toLowerCase();
+            let answer3 = document.getElementById("q3").value.trim().toLowerCase();
+
+            if (answer1 === "2023-05-20" && answer2 === "项链" && answer3 === "陪我聊天") {
+                document.getElementById("result").innerHTML = "🎉 答对啦！即将跳转到惊喜页面！";
+                setTimeout(() => {
+                    window.location.href = "love.html"; // 跳转到最终表白网页
+                }, 2000);
+            } else {
+                document.getElementById("result").innerHTML = "❌ 有些答案不对哦！再试试吧！🥺";
+            }
+        }
+    </script>
+</body>
+</html>
