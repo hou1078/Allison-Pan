@@ -3,33 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录界面 💕</title>
+    <title>小宝登录界面 🧸💕</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; background-color: #ffdde1; padding: 20px; }
-        h1 { color: red; }
-        .login-box { background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); }
-        input { font-size: 18px; padding: 8px; margin: 10px; width: 80%; text-align: center; }
-        button { font-size: 18px; padding: 10px 20px; background-color: #ff4d4d; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #ff1a1a; }
-        .toggle-password { cursor: pointer; font-size: 16px; color: blue; }
+        /* 🌈 背景渐变 + 居中 */
+        body {
+            text-align: center;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #FEECE2, #FAD4C0);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        /* 🧸 标题样式 */
+        h1 {
+            color: #7D5A50;
+            font-size: 32px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Bradley Hand', cursive;
+        }
+
+        /* 🧁 登录框 */
+        .login-box {
+            background: #FFF8E3;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* 🐻 输入框 */
+        input {
+            font-size: 18px;
+            padding: 12px;
+            margin: 10px 0;
+            width: 100%;
+            border: 2px solid #E8B4A5;
+            border-radius: 12px;
+            text-align: center;
+            outline: none;
+            background: #FFFAF1;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #D98880;
+            box-shadow: 0px 0px 8px rgba(217, 136, 128, 0.6);
+        }
+
+        /* 👁️ 显示密码按钮 */
+        .toggle-password {
+            cursor: pointer;
+            font-size: 18px;
+            color: #D98880;
+            position: absolute;
+            right: 10px;
+            top: 40%;
+            transform: translateY(-50%);
+        }
+
+        /* 让显示密码按钮不影响输入框 */
+        .password-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* 🍪 Jellycat 软乎乎按钮 */
+        button {
+            font-size: 18px;
+            padding: 12px;
+            width: 100%;
+            background: #E8B4A5;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: #D98880;
+        }
+
+        button:active {
+            transform: scale(0.97);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 💬 提示信息 */
+        #error-message {
+            color: red;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        #hint-message {
+            color: #7D5A50;
+            font-size: 14px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* 🌟 渐入动画 */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
     </style>
 </head>
 <body>
-    <h1>💖 亲爱的，先登录才能继续 💖</h1>
+    <h1 class="fade-in">🐻💖 你是我的小宝吗？小宝请登录 💖🐻</h1>
 
-    <div class="login-box">
-        <p>用户名：</p>
+    <div class="login-box fade-in">
+        <p><strong>🐻 用户名：</strong></p>
         <input type="text" id="username" placeholder="请输入用户名">
 
-        <p>密码：</p>
-        <input type="password" id="password" placeholder="请输入密码">
-        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        <p><strong>🔒 密码：</strong></p>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="请输入密码">
+            <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
 
-        <br>
-        <button onclick="checkLogin()">登录</button>
+        <br><br>
+        <button onclick="checkLogin()">✨ 进入 我给小宝建的 王国 ✨</button>
 
-        <p id="error-message" style="color: red;"></p>
-        <p id="hint-message" style="color: gray;">提示：用户名是“你英文名，首字母大写”，密码是你的生日, 格式: YYYYMMDD</p>
+        <p id="error-message"></p>
+        <p id="hint-message">📝 如需提示：需要消耗一个生气积分</p>
     </div>
 
     <script>
@@ -38,22 +149,38 @@
             let pass = document.getElementById("password").value.trim();
 
             // 这里是你自己设置的用户名和密码
-            const correctUser = "Allison";
-            const correctPass = "19960202";
+            const correctUser = "Allison";  // 你可以改成自己的用户名
+            const correctPass = "19960202";  // 你可以改成自己的密码
 
             if (user === "" || pass === "") {
-                document.getElementById("error-message").innerText = "⚠️ 请输入用户名和密码！";
+                document.getElementById("error-message").innerText = "⚠️ 你是谁！冒充我的小宝！！";
                 return;
             }
 
             if (user !== correctUser) {
-                document.getElementById("error-message").innerText = "❌ 用户名错误！再想想吧～";
+                document.getElementById("error-message").innerText = "❌ 用户名错误！应该小宝的英文名字！(首字母要大写哦)";
                 return;
             }
 
             if (pass !== correctPass) {
-                document.getElementById("error-message").innerText = "❌ 密码错误！";
+                document.getElementById("error-message").innerText = "❌ 密码错误！这不是我小宝的生日（YYYYMMDD）！";
                 return;
             }
 
-            document.get
+            document.getElementById("error-message").innerText = "🎉 登录成功！小宝稍等一下哦...";
+            setTimeout(() => {
+                window.location.href = "quiz.html"; // 跳转到问答页面
+            }, 2000);
+        }
+
+        function togglePassword() {
+            let passField = document.getElementById("password");
+            if (passField.type === "password") {
+                passField.type = "text";
+            } else {
+                passField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

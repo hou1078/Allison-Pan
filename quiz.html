@@ -3,51 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱的问答 💖</title>
+    <title>💕 爱的问答 💕</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; background-color: #ffdde1; padding: 20px; }
-        h1 { color: red; }
-        .question { font-size: 20px; margin: 20px; }
-        button { font-size: 18px; padding: 10px 20px; background-color: #ff4d4d; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #ff1a1a; }
+        /* 🌈 背景渐变 + 居中 */
+        body {
+            text-align: center;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #FEECE2, #FAD4C0);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        /* 🧸 标题 */
+        h1 {
+            color: #7D5A50;
+            font-size: 32px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Bradley Hand', cursive;
+        }
+
+        /* 📖 问题手册 */
+        .manual {
+            background: #FFF8E3;
+            padding: 15px;
+            border-radius: 12px;
+            width: 380px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* 💡 横向问题容器 */
+        .question-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* 📝 题目块 */
+        .question {
+            background: #FFF8E3;
+            padding: 15px;
+            border-radius: 12px;
+            width: 255px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 🎁 提示按钮 */
+        .hint-btn {
+            font-size: 14px;
+            padding: 5px;
+            background: #F4A896;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .hint-btn:hover {
+            background: #D98880;
+        }
+
+        /* 📝 输入框 */
+        input {
+            font-size: 16px;
+            padding: 8px;
+            width: 90%;
+            border: 2px solid #E8B4A5;
+            border-radius: 8px;
+            text-align: center;
+            background: #FFFAF1;
+            outline: none;
+            margin-top: 5px;
+        }
+
+        /* 🧁 交互按钮 */
+        button {
+            font-size: 18px;
+            padding: 12px;
+            width: 60%;
+            background: #E8B4A5;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #D98880;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        /* 💬 结果信息 */
+        #result {
+            font-size: 18px;
+            color: red;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
-    <h1>💕 亲爱的，答对这些题，才能继续哦 💕</h1>
+    <h1>🐻💕 爱的问答 💕🐻</h1>
 
-    <div class="question">
-        <p>1️⃣ 我们第一次见面的日期是？（格式：YYYY-MM-DD）</p>
-        <input type="text" id="q1">
+    <div class="manual">
+        <p>📖 规则手册：</p>
+        <ul style="text-align: left;">
+            <li>答对全部 5 题，解锁最终表白 💖</li>
+            <li>使用 <b>提示</b> 扣 1 个 <b>生气积分</b> 🤬</li>
+            <li>每次提交答案也会扣 1 积分</li>
+            <li>如果答错了，必须从头再来 😈</li>
+            <li>📱 <b>每次切换到其他 App / 网页，扣 1 积分</b></li>
+            <li>💋 <b>积分不够？一个亲亲换一个积分！</b></li>
+        </ul>
     </div>
 
-    <div class="question">
-        <p>2️⃣ 我送你的第一个礼物是什么？</p>
-        <input type="text" id="q2">
+    <!-- 横向排列的 5 道题 -->
+    <div class="question-container">
+        <div class="question">
+            <p>1️⃣ 第一次见面的日期？</p>
+            <input type="text" id="q1">
+            <button class="hint-btn" onclick="useHint(1)">💡 提示</button>
+            <p id="hint1" style="display:none; color: gray;">格式 YYYYMMDD</p>
+        </div>
+
+        <div class="question">
+            <p>2️⃣ 第一次一起吃的餐厅名？</p>
+            <input type="text" id="q2">
+            <button class="hint-btn" onclick="useHint(2)">💡 提示</button>
+            <p id="hint2" style="display:none; color: gray;">中文名，是三个字，在station square哦</p>
+        </div>
+
+        <div class="question">
+            <p>3️⃣ 第一次一起看的电影名？</p>
+            <input type="text" id="q3">
+            <button class="hint-btn" onclick="useHint(3)">💡 提示</button>
+            <p id="hint3" style="display:none; color: gray;">男主角是个骗子呢</p>
+        </div>
+
+        <div class="question">
+            <p>4️⃣ 第一次剧本杀我俩角色的关系？</p>
+            <input type="text" id="q4">
+            <button class="hint-btn" onclick="useHint(4)">💡 提示</button>
+            <p id="hint4" style="display:none; color: gray;">两个字（不是闺蜜哦）</p>
+        </div>
+
+        <div class="question">
+            <p>5️⃣ 下一次你希望我俩一起做的事情</p>
+            <input type="text" id="q5">
+            <button class="hint-btn" onclick="useHint(5)">💡 提示</button>
+            <p id="hint5" style="display:none; color: gray;">哈哈哈，这题没有正确答案，但是未来会变成正确答案</p>
+        </div>
     </div>
 
-    <div class="question">
-        <p>3️⃣ 我最喜欢你做的一件事是什么？</p>
-        <input type="text" id="q3">
-    </div>
+    <button onclick="checkAnswers()">🎁 提交答案 🎁</button>
 
-    <button onclick="checkAnswers()">提交答案</button>
-
-    <p id="result" style="font-size: 18px; color: green;"></p>
+    <p id="result"></p>
 
     <script>
+        let angerPoints = 0; // 生气积分从 0 开始
+
+        function useHint(questionNum) {
+            document.getElementById(`hint${questionNum}`).style.display = "block";
+            angerPoints++;
+            updateAngerPoints();
+        }
+
         function checkAnswers() {
+            angerPoints++; // 每次提交扣 1 分
+
             let answer1 = document.getElementById("q1").value.trim();
             let answer2 = document.getElementById("q2").value.trim().toLowerCase();
             let answer3 = document.getElementById("q3").value.trim().toLowerCase();
+            let answer4 = document.getElementById("q4").value.trim().toLowerCase();
+            let answer5 = document.getElementById("q5").value.trim().toLowerCase();
 
-            if (answer1 === "2023-05-20" && answer2 === "项链" && answer3 === "陪我聊天") {
-                document.getElementById("result").innerHTML = "🎉 答对啦！即将跳转到惊喜页面！";
-                setTimeout(() => {
-                    window.location.href = "love.html"; // 跳转到最终表白网页
-                }, 2000);
+            if (answer1 === "20241223" && answer2 === "豆捞坊" && answer3 === "骗骗喜欢你" && answer4 === "夫妻" && answer5 === "") {
+                document.getElementById("result").innerHTML = "🎉 答对啦！即将跳转到最终表白 💖";
+                setTimeout(() => { window.location.href = "love.html"; }, 2000);
             } else {
-                document.getElementById("result").innerHTML = "❌ 有些答案不对哦！再试试吧！🥺";
+                document.getElementById("result").innerHTML = "❌ 不对哦小宝！😡 消耗一个积分重新开始！";
+                angerPoints = 0;
+                setTimeout(() => { location.reload(); }, 2000);
             }
+
+            updateAngerPoints();
+        }
+
+        function updateAngerPoints() {
+            document.getElementById("angerPoints").innerText = angerPoints;
         }
     </script>
 </body>
